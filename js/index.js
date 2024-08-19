@@ -1,8 +1,6 @@
-function play() {
-    document.getElementById('first').classList.add('hidden')
-    document.getElementById('second').classList.remove('hidden')
-    randomNumber()
-}
+window.onload = function() {
+    document.addEventListener('keyup', keyUp)
+};
 
 function randomNumber() {
     const word = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '/'];
@@ -11,7 +9,18 @@ function randomNumber() {
     
 }
 
-function Click(alphabet) {
+function keyUp(event) {
+    if (event.key === 'Enter') {
+        playAgain()
+    }
+    else{
+        click(event.key)
+    }           
+    
+}
+
+// document.getElementById('word').setAttribute(onclick)
+function click(alphabet) {
     const word = document.getElementById('word').innerText
     if (word === alphabet) {
         const score = document.getElementById('score').innerText;
@@ -36,9 +45,11 @@ function Click(alphabet) {
 }
 
 function playAgain() {
+    document.getElementById('first').classList.add('hidden')
     document.getElementById('third').classList.add('hidden')
     document.getElementById('second').classList.remove('hidden')
     document.getElementById('life').innerText = 5
+    document.getElementById('score').innerText = 0
     randomNumber()
 }
 
